@@ -5,7 +5,7 @@ Survival analysis and ML-based mortality prediction on public oncology datasets,
 ## Projects
 
 ### 1. TCGA Lung Adenocarcinoma
-**Clinical question**: Do specific mutation profiles influence survival outcomes 
+**Question**: Do specific mutation profiles influence survival outcomes 
 in lung adenocarcinoma patients?
 
 **Dataset**: 566 patients, 38 clinical variables, 225k somatic mutations 
@@ -66,6 +66,13 @@ Python · pandas · numpy · lifelines · scikit-learn · XGBoost · matplotlib 
 All datasets are publicly available:
 - TCGA Lung Adenocarcinoma via [cBioPortal](https://www.cbioportal.org)
 - METABRIC via [cBioPortal](https://www.cbioportal.org)
+
+Download from cBioPortal:
+- https://www.cbioportal.org/study/summary?id=luad_tcga_pan_can_atlas_2018
+
+Files needed:
+- data_clinical_patient.txt
+- data_mutations.txt"
 
 ## Author
 Cécile Soudé — MSc Biomedical Engineering, Imperial College London
