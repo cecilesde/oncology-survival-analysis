@@ -72,7 +72,7 @@ Download from cBioPortal:
 
 Files needed:
 - data_clinical_patient.txt
-- data_mutations.txt"
+- data_mutations.txt
 
 ## Author
 Cécile Soudé — MSc Biomedical Engineering, Imperial College London
