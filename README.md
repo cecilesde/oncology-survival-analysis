@@ -1,72 +1,65 @@
 # Oncology Survival Analysis
 
-Survival analysis and ML-based mortality prediction on public oncology datasets, built as part of a personal research portfolio in computational oncology.
+Survival analysis and ML-based mortality prediction on public oncology datasets.
 
-## Projects
+---
 
-### 1. TCGA Lung Adenocarcinoma
-**Clinical question**: Do specific mutation profiles influence survival outcomes 
-in lung adenocarcinoma patients?
+## TCGA Lung Adenocarcinoma
 
-**Dataset**: 566 patients, 38 clinical variables, 225k somatic mutations 
-(TCGA PanCancer Atlas, via cBioPortal)
+**Question:** Can mutation profiles predict survival outcomes in lung adenocarcinoma patients?
 
-**Analyses**:
-- Exploratory data analysis: patient demographics, tumour stage distribution
-- Kaplan-Meier survival curves stratified by tumour stage and mutation status
+**Dataset:** 566 patients · 38 clinical variables · 225k somatic mutations (TCGA PanCancer Atlas via cBioPortal)
+
+**Key biological question**  
+KRAS is mutated in ~30% of lung adenocarcinomas.  
+Co-occurring mutations in STK11 and KEAP1 define aggressive subtypes with poor prognosis and resistance to immunotherapy.
+
+Can we predict this from genomic data alone?
+
+**Analyses**
+- Exploratory data analysis: demographics, tumour stage distribution
+- Kaplan-Meier survival curves by tumour stage and mutation status
 - KRAS subtype analysis and co-mutation patterns (STK11, KEAP1)
 - Multivariable Cox proportional hazards model
-- ML-based mortality prediction (Random Forest, XGBoost)
+- ML-based mortality prediction (XGBoost, Random Forest)
 
-**Key biological question**: KRAS is mutated in ~30% of lung adenocarcinomas. 
-Co-occurring mutations in STK11 and KEAP1 define aggressive subtypes with 
-poor prognosis — can we predict this from genomic data alone?
+<!-- ADD YOUR FIGURES HERE ONCE NOTEBOOK 02 IS DONE -->
+<!-- ![KM curves](figures/km_by_stage.png) -->
+<!-- ![SHAP](figures/shap_summary.png) -->
 
-### 2. METABRIC Breast Cancer
-- Kaplan-Meier and Cox PH survival analysis
-- Nottingham Prognostic Index (NPI) validation
-- Confounding by indication analysis
-- ML-based survival prediction
+---
 
 ## Methods
 
-### Kaplan-Meier Estimator
-The survival function S(t) is estimated as:
+**Kaplan-Meier**: estimates the survival function over time per group. Group differences assessed with the log-rank test
 
-$$S(t) = \prod_{t_i \leq t} \left(1 - \frac{d_i}{n_i}\right)$$
+**Cox Proportional Hazards**: quantifies the effect of each variable  
+(age, stage, mutation status) on mortality risk as a hazard ratio (HR).  
+HR > 1 = higher risk. Proportional hazards assumption verified via Schoenfeld residuals
 
-where $d_i$ is the number of events (deaths) at time $t_i$ and $n_i$ is the 
-number of patients at risk just before $t_i$. Censored observations are 
-accounted for by removing patients from the risk set without counting them 
-as events.
+**ML Mortality Prediction**: binary classification (death within 24 months) using XGBoost and Random Forest. Evaluated with AUC-ROC and Brier score via stratified 5-fold cross-validation
 
-Group comparisons are assessed with the log-rank test (H₀: identical 
-survival functions across groups).
-
-### Cox Proportional Hazards Model
-The hazard function for patient $i$ is modelled as:
-
-$$h(t | X_i) = h_0(t) \cdot \exp(\beta^T X_i)$$
-
-where $h_0(t)$ is the baseline hazard, $X_i$ the covariate vector 
-(age, stage, mutation status), and $\exp(\beta_j)$ the hazard ratio 
-for covariate $j$. The proportional hazards assumption is verified 
-via Schoenfeld residuals.
-
-### ML-based Mortality Prediction
-Binary classification (death within 24 months) using XGBoost and 
-Random Forest. Features include clinical variables and top somatic 
-mutation indicators. Model evaluation via time-aware cross-validation 
-with AUC-ROC and Brier score.
+---
 
 ## Stack
+
 Python · pandas · numpy · lifelines · scikit-learn · XGBoost · matplotlib · seaborn
 
-## Data Sources
-All datasets are publicly available:
-- TCGA Lung Adenocarcinoma via [cBioPortal](https://www.cbioportal.org)
-- METABRIC via [cBioPortal](https://www.cbioportal.org)
+---
+
+## Data
+
+All datasets are publicly available via [cBioPortal](https://www.cbioportal.org/).
+
+| Dataset | Link |
+|---|---|
+| TCGA Lung Adenocarcinoma | [luad_tcga_pan_can_atlas_2018](https://www.cbioportal.org/study/summary?id=luad_tcga_pan_can_atlas_2018) |
+
+Files needed: `data_clinical_patient.txt` · `data_mutations.txt`
+
+---
 
 ## Author
-Cécile Soudé — MSc Biomedical Engineering, Imperial College London
-[LinkedIn](www.linkedin.com/in/cécile-soudé-384027218)
+
+Cécile Soudé — MSc Biomedical Engineering, Imperial College London  
+[LinkedIn](https://www.linkedin.com/in/cécile-soudé-384027218)
