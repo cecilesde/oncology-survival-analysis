@@ -21,9 +21,13 @@ Can we predict this from genomic data alone?
 - Multivariable Cox proportional hazards model
 - ML-based mortality prediction (XGBoost)
 
-<!-- ADD YOUR FIGURES HERE ONCE NOTEBOOK 02 IS DONE -->
-<!-- ![KM curves](figures/km_by_stage.png) -->
-<!-- ![SHAP](figures/shap_summary.png) -->
+**Results**
+
+![Survival by KRAS co-mutation subtype](figures/km_kras_subtypes.png)
+*KRAS+STK11 shows the worst early survival. KRAS alone tracks close to wild-type, it's the co-mutation that matters.*
+
+![SHAP feature importance](figures/shap_beeswarm.png)
+*Tumour stage dominates predictions. Among mutations, STK11 is the strongest prognostic signal (HR=1.90, p=0.002 in Cox PH).*
 
 ---
 
