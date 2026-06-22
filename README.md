@@ -52,4 +52,3 @@ All datasets are publicly available:
 
 ## Author
 Cécile Soudé — MSc Biomedical Engineering, Imperial College London
-[LinkedIn](www.linkedin.com/in/cécile-soudé-384027218)
